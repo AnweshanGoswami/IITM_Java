@@ -1,0 +1,51 @@
+class BankAccount{
+    int accountNumber;
+    String name;
+    int balance;
+    final int minBalance = 100;
+    private boolean checkMinBalance(int amount){
+        if(balance - amount <= minBalance){
+            return false;
+        }
+        else{
+          return true;
+        }
+    }
+//Fill the code here
+
+//constructor
+public BankAccount(int ac, String n, int b){
+this.accountNumber = ac;
+this.name = n;
+this.balance = b;
+}
+public void  balance(){
+System.out.println(balance);
+}
+
+public void deposit(int amount){
+balance = balance + amount;
+}
+
+public void withdraw(int amount){
+if (checkMinBalance(amount)){
+    balance = balance - amount;
+}
+else{
+    System.out.println("Transaction failed");
+}
+}
+}
+class AccountCheck{
+    public static void main(String[] args) {
+        //Scanner sc = new Scanner(System.in);
+        int amnt = 5000;
+        int amnt1 = 200;
+        BankAccount b = new BankAccount(1890, "rahul", 1000);
+        b.deposit(amnt);
+        b.balance();
+        b.withdraw(amnt1);
+        b.balance();
+    }
+
+}
