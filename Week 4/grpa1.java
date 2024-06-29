@@ -1,48 +1,43 @@
 import java.util.*;
+abstract class StringOperations{
+  public abstract String reverse(String s);
+  public abstract int vowelCount(String s);
+}
+//Fill the code here
 
-interface Iterator{
-    public boolean has_next();
-    public Object get_next();
+abstract class StringReverse extends StringOperations{
+    public String reverse(String s){
+        char x; //extract last characters
+        String reversed = ""; //add the characters
+        for(int i=0;i<s.length();i++){
+            x  = s.charAt(i);
+            reversed = x + reversed;
+        }
+        return(reversed);
+    }
+    
 }
 
-class Sequence{
-    private final int maxLimit = 80;
-    private SeqIterator _iter = null;
-    int[] iArr; 
-    int size;
-
-    //implement the parameterized constructor to initialize size
-    public Sequence(int s){
-        this.size = s;
-    }
-
-    //implement addTo(elem) to add an int elem to the sequence
-    public void addTo(elem){
-        
-
-        
-    }
-//implement get_Iterator() to return Iterator object
- 
-    private class SeqIterator implements Iterator{
-        int indx;
-        public SeqIterator(){
-            indx = -1;
+ class UpdatedStrings extends StringReverse{
+    public int vowelCount(String s){
+        int count=0;
+        char x;
+        s = s.toLowerCase();
+        for(int i=0;i<s.length();i++){
+            x = s.charAt(i);
+            if(x =='a' || x == 'e' || x == 'i' || x == 'o' || x == 'u'){
+                count += 1;
+            }
         }
-        //implement has_next()
-        //implement get_next()
+        return(count);
     }
 }
-
-class grpa1{
-    public static void main(String[] args) {
-        Sequence sObj = new Sequence(5);
-        Scanner sc = new Scanner(System.in); 
-        for(int i = 0; i < 5; i++) {
-            sObj.addTo(sc.nextInt());
-        }
-        Iterator i = sObj.get_Iterator();
-        while(i.has_next())
-            System.out.print(i.get_next() + ", ");
-    }
+class Example {
+  public static void main(String[] args) {
+    Scanner sc = new Scanner(System.in);
+    String s = sc.next();
+    UpdatedStrings str = new UpdatedStrings();
+    System.out.println("Reverse of "+ s + " is "+ str.reverse(s));
+    System.out.println("Vowel count of "+ s + " is "+ str.vowelCount(s));
+  }
 }
