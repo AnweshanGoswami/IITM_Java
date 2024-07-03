@@ -21,10 +21,10 @@ class ComplexNum <T extends Number>{ //extends Number to make sure that chaarcte
         return r + " + " + i + "i";
     } */ 
 
-    public ComplexNum <Double> add(ComplexNum <? extends Number> x){ 
-        double r = this.r.doubleValue() + x.r.doubleValue();
-        double i = this.i.doubleValue() + x.i.doubleValue();
-        return new ComplexNum<Double>(r, i);
+    public ComplexNum <T> add(ComplexNum <T> x){ 
+        T r = this.r.doubleValue() + x.r.doubleValue();
+        T i = this.i.doubleValue() + x.i.doubleValue();
+        return new ComplexNum<T>(r, i);
     }
 public class grpa1{
 public static void main(String[] args) {
