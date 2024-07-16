@@ -31,7 +31,7 @@ class DivisionException extends Exception{
     return "Division by 3 is not allowed";}
 }
 
-public class Test {
+public class grpa1 {
  
     //Define divide(int a, int b) here
     public int  divide(int a, int b) throws DivisionException{
