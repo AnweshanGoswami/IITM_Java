@@ -1,13 +1,16 @@
 import java.util.*;
-
 //define user defined exception InvalidInputEx
 //We do not know when this exception will be triggered
 //And we need to do exactly that in the set value function
 //We cant throw this function in the catch block of another error
 class InvalidInputEx extends Exception{
     //Constructor
+    public InvalidInputEx(String message, Throwable cause){
+    super(message, cause);
+    }
+    
     public InvalidInputEx(String message){
-    super(message);
+        this(message, null);
     }
 }
 
@@ -18,12 +21,9 @@ class IntList{
     public int [] list = new int[5]; 
     
     //Constructor initialises default values to zero
-    public IntList(){
-        for(int i=0;i<5;i++){
-        list[i] = 0;
-        }
+    public IntList() {
+        Arrays.fill(list, 0);
     }
-    
     //and methods set_value, getArray()
     
     /*public void set_value(int index, int value) throws InvalidInputEx{
@@ -31,9 +31,9 @@ class IntList{
             list[index] = value;
         }
         catch(ArrayIndexOutOfBoundsException e){
-            throw new InvalidInputEx("Index " + index + " out of bounds for length 5");
-        }*/
-
+            throw new InvalidInputEx("invalid input index");
+        }
+    }*/
     //The problem with what we just did there is that its a try and catch block. Therefore, it will try something, and upon error
     //the catch block will try to fix that issue. 
     //However, throwing another exception is not fixing the issue
@@ -42,13 +42,12 @@ class IntList{
 
     //and methods set_value, getArray()
     public void set_value(int index, int value) throws InvalidInputEx{
+        if (index < 0 || index > 4){
+        Throwable cause = new ArrayIndexOutOfBoundsException("Index " + index + " out of bounds for length 5");
+        throw new InvalidInputEx("invalid index input", cause);
+        }
         
-        if (index < 0 || index > 4)
-        throw new InvalidInputEx("Index " + index + " out of bounds for length 5");
-
         list[index] = value;
-        
-
     }
     
     public int[] getArray(){
@@ -60,7 +59,8 @@ class IntList{
 
 
 
-public class grpa2{
+
+class grpa2{
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         IntList ilist = new IntList();
